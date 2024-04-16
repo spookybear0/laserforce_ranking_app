@@ -50,7 +50,7 @@ String roleToImagePath(IntRole role) {
 }
 
 class LaserforceApi {
-  static const String baseUrl = "http://192.168.0.53:8500/api/";
+  static const String baseUrl = "https://laserforce.spoo.uk/api/";
   static String? codename;
   static String? password;
 
