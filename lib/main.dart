@@ -55,7 +55,7 @@ class LaserforceRanking extends StatelessWidget {
   }
 
   Future<bool> _checkLoginStatus() async {
-    final storage = FlutterSecureStorage();
+    var storage = const FlutterSecureStorage();
     final String? codename = await storage.read(key: "codename");
 
     LaserforceApi.codename = codename;

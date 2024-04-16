@@ -43,15 +43,12 @@ class LoginPage extends StatelessWidget {
                   LaserforceApi.login(
                           codenameController.text, passwordController.text)
                       .then((response) {
-                    print("Response status: ${response.statusCode}");
-                    print("Response body: ${response.body}");
                     var jsonResponse = jsonDecode(response.body);
 
                     if (response.statusCode == 200 &&
                         jsonResponse["status"] == "ok") {
-                      print("Login successful");
 
-                      final storage = FlutterSecureStorage();
+                      var storage = const FlutterSecureStorage();
                       storage.write(
                           key: "codename", value: codenameController.text);
                       storage.write(
@@ -59,12 +56,12 @@ class LoginPage extends StatelessWidget {
 
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(builder: (context) => HomePage()),
+                        MaterialPageRoute(builder: (context) => const HomePage()),
                       );
                     }
                   });
                 },
-                child: Text("Login"),
+                child: const Text("Login"),
               ),
               // TODO: make it so people can claim ownership of their profile
             ],

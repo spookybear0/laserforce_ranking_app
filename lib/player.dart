@@ -4,16 +4,16 @@ import "dart:convert";
 import "package:fl_chart/fl_chart.dart";
 
 class PlayerPage extends StatefulWidget {
-  PlayerPage({super.key, required this.codename});
+  const PlayerPage({super.key, required this.codename});
 
   final String codename;
 
   @override
-  _PlayerPageState createState() => _PlayerPageState(codename);
+  PlayerPageState createState() => PlayerPageState(codename);
 }
 
-class _PlayerPageState extends State<PlayerPage> {
-  _PlayerPageState(this.codename);
+class PlayerPageState extends State<PlayerPage> {
+  PlayerPageState(this.codename);
 
   final String codename;
   bool _isLoading = true;
@@ -27,9 +27,7 @@ class _PlayerPageState extends State<PlayerPage> {
   }
 
   void getPlayerData() {
-    print("Current page index: $_currentPageIndex");
-
-    LaserforceApi.getPlayerData(codename, stats: true, recent_games: true).then((response) {
+    LaserforceApi.getPlayerData(codename, stats: true, recentGames: true).then((response) {
       setState(() {
         playerData = jsonDecode(response.body);
         _isLoading = false;
@@ -127,6 +125,8 @@ class _PlayerPageState extends State<PlayerPage> {
                 Text(codename, style: const TextStyle(fontSize: 48)),
                 Text(playerData["player_id"],
                     style: const TextStyle(fontSize: 24)),
+                Text(playerData["entity_id"],
+                    style: const TextStyle(fontSize: 18)),
                 const SizedBox(height: 32),
                 Text("SM5 Rating: ${(playerData["sm5_ordinal"]).toStringAsFixed(2)}",
                     style: const TextStyle(fontSize: 24)),
@@ -148,46 +148,46 @@ class _PlayerPageState extends State<PlayerPage> {
                               color: Theme.of(context).colorScheme.inverseSurface,
                             ),
                             children: const [
-                              Padding(
-                                padding: EdgeInsets.all(4),
-                                child: TableCell(
-                                  verticalAlignment: TableCellVerticalAlignment.middle,
+                              TableCell(
+                                verticalAlignment: TableCellVerticalAlignment.middle,
+                                child: Padding(
+                                  padding: EdgeInsets.all(4),
                                   child: Center(
                                     child: Text("Game", style: TextStyle(fontSize: 18))
                                   )
                                 )
                               ),
-                              Padding(
-                                padding: EdgeInsets.all(4),
-                                child: TableCell(
-                                  verticalAlignment: TableCellVerticalAlignment.middle,
+                              TableCell(
+                                verticalAlignment: TableCellVerticalAlignment.middle,
+                                child: Padding(
+                                  padding: EdgeInsets.all(4),
                                   child: Center(
                                     child: Text("Win/Loss", style: TextStyle(fontSize: 18), textAlign: TextAlign.center)
                                   )
                                 )
                               ),
-                              Padding(
-                                padding: EdgeInsets.all(4),
-                                child: TableCell(
-                                  verticalAlignment: TableCellVerticalAlignment.middle,
+                              TableCell(
+                                verticalAlignment: TableCellVerticalAlignment.middle,
+                                child: Padding(
+                                  padding: EdgeInsets.all(4),
                                   child: Center(
                                     child: Text("Rating", style: TextStyle(fontSize: 18))
-                                  )  
+                                  )
                                 )
                               ),
-                              Padding(
-                                padding: EdgeInsets.all(4),
-                                child: TableCell(
-                                  verticalAlignment: TableCellVerticalAlignment.middle,
+                              TableCell(
+                                verticalAlignment: TableCellVerticalAlignment.middle,
+                                child: Padding(
+                                  padding: EdgeInsets.all(4),
                                   child: Center(
                                     child: Text("Role", style: TextStyle(fontSize: 18))
                                   )
                                 )
                               ),
-                              Padding(
-                                padding: EdgeInsets.all(4),
-                                child: TableCell(
-                                  verticalAlignment: TableCellVerticalAlignment.middle,
+                              TableCell(
+                                verticalAlignment: TableCellVerticalAlignment.middle,
+                                child: Padding(
+                                  padding: EdgeInsets.all(4),
                                   child: Center(
                                     child: Text("Score", style: TextStyle(fontSize: 18))
                                   )
@@ -254,37 +254,37 @@ class _PlayerPageState extends State<PlayerPage> {
                                 color: Theme.of(context).colorScheme.inverseSurface,
                               ),
                               children: const [
-                                Padding(
-                                  padding: EdgeInsets.all(4),
-                                  child: TableCell(
-                                    verticalAlignment: TableCellVerticalAlignment.middle,
+                                TableCell(
+                                  verticalAlignment: TableCellVerticalAlignment.middle,
+                                  child: Padding(
+                                    padding: EdgeInsets.all(4),
                                     child: Center(
                                       child: Text("Game", style: TextStyle(fontSize: 18))
                                     )
                                   )
                                 ),
-                                Padding(
-                                  padding: EdgeInsets.all(4),
-                                  child: TableCell(
-                                    verticalAlignment: TableCellVerticalAlignment.middle,
+                                TableCell(
+                                  verticalAlignment: TableCellVerticalAlignment.middle,
+                                  child: Padding(
+                                    padding: EdgeInsets.all(4),
                                     child: Center(
                                       child: Text("Win/Loss", style: TextStyle(fontSize: 18), textAlign: TextAlign.center)
                                     )
                                   )
                                 ),
-                                Padding(
-                                  padding: EdgeInsets.all(4),
-                                  child: TableCell(
-                                    verticalAlignment: TableCellVerticalAlignment.middle,
+                                TableCell(
+                                  verticalAlignment: TableCellVerticalAlignment.middle,
+                                  child: Padding(
+                                    padding: EdgeInsets.all(4),
                                     child: Center(
                                       child: Text("Rating", style: TextStyle(fontSize: 18))
                                     )  
                                   )
                                 ),
-                                Padding(
-                                  padding: EdgeInsets.all(4),
-                                  child: TableCell(
-                                    verticalAlignment: TableCellVerticalAlignment.middle,
+                                TableCell(
+                                  verticalAlignment: TableCellVerticalAlignment.middle,
+                                  child: Padding(
+                                    padding: EdgeInsets.all(4),
                                     child: Center(
                                       child: Text("Goals", style: TextStyle(fontSize: 18))
                                     )
@@ -349,8 +349,6 @@ class _PlayerPageState extends State<PlayerPage> {
         ),
       );
     }
-
-    print(playerData);
 
     Widget page;
 

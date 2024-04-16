@@ -77,10 +77,10 @@ class LaserforceApi {
   }
 
   static Future<http.Response> getPlayerData(String codename,
-      {bool stats = false, bool recent_games = false}) {
-    return post("player/" + codename, {
+      {bool stats = false, bool recentGames = false}) {
+    return post("player/$codename", {
       "stats": stats,
-      "recent_games": recent_games,
+      "recent_games": recentGames,
     });
   }
 }
